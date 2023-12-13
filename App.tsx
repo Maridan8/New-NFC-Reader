@@ -14,7 +14,6 @@ import {
 import PassportReader from './src/PassportReader';
 
 function App(){
-
   return (
     <SafeAreaView style={{backgroundColor:"#555"}}>
       <ScrollView
