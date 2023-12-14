@@ -1,79 +1,127 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# This is the report about our working so far.
 
-# Getting Started
+>**NOTE:** So many deprecated, no longer supported node modules and native modules, we've struggled into our work hardly.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+# Comprehensive
+# 1.Get started React Native TypeScript!
 
-## Step 1: Start the Metro Server
+> **Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+**This may seem like a silly story, but it's an important one.**
 
-To start Metro, run the following command from the _root_ of your React Native project:
+...
+
+## ✔️Using template
 
 ```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
+npx react-native init NFC --template react-native-template-typescript[@6.12.*]
 ```
 
-## Step 2: Start your Application
+> Best matches with react-native-nfc-passport-reader module follow the below:
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+| React-native | template |
+| ------------ | -------- |
+| 0.70         | 6.12.\*  |
+| 0.69         | 6.11.\*  |
+| 0.68         | 6.10.\*  |
+| 0.67         | 6.9.\*   |
+| 0.66         | 6.8.\*   |
+> **NOTE:** We 'll intend to install a template comes with Gradle7.0~7.2.
+Because NFC modules typically have compitability with Gradle7.0~7.2.
+To build or release your App, this is very important step.
 
-### For Android
+> **NOTE:** After install a template, to avoide some errors, remove the "node_modules" directory.
+> And then, at first, install @best-network/react-native-nfc-passport-reader before another modules (react, react-native etc.)
+
+## ✔️Running your first App
+
+> **Note**:Make sure that you have installed the Android Studio (or only Emulator) and followed [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup)
+
+Once you installed your first template, you can execute your first App by the following commands:
 
 ```bash
-# using npm
+#using npm
+npm run start
+
+#in another terminal
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
-### For iOS
+(in the case of me, Android 2022, JDK 17)
 
-```bash
-# using npm
-npm run ios
+# 2.Realse App
 
-# OR using Yarn
-yarn ios
+> **NOTE:** If you are ready to release your Apk, make sure that you follow the below steps
+
+## ✔️STEP1: Linking & Setting
+
+
+
+``````
+# navigate into android/app/src0/main/AndroidManifest.xml, insert the below:
+
+<uses-permission android:name="android.permission.NFC" />
+<uses-feature
+    android:name="android.hardware.nfc"
+    android:required="true" />
+<application>
+...
+</application>
+``````
+
+## ✔️STEP2: Keytool install!
+
+> **Note**:Make sure that you have installed keytool
+> if didn't so, you can follow this- [Keytool install Guide](https://codewithandrea.com/articles/keytool-command-not-found-how-to-fix-windows-macos/)
+
+### -Install JDK
+
+[Download JDK](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+
+### -Set Environment Variable
+
+```
+example: C:\Program Files\Java\jdk-17\bin
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+## ✔️STEP3: Perfect Release Guide!(by both the React Native CLI and Android)
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+> **Note**:Follow this guide!-[How to Release your App](https://instamobile.io/android-development/generate-react-native-release-build-android/)
 
-## Step 3: Modifying your App
+# 3.Error Report
+Here are some errors i've encountered while working on our project.
 
-Now that you have successfully run the app, let's modify it.
+## ✔️1.Define Error (This is very general)
+``````
+Error: not defined "react-native-nfc-passport-reader"
+Solution: create a file named with 'index.d.ts', after then, insert "" into that file.
+``````
+## ✔️2.Module no Match Error(This error can't find out by VS.Code Editor, caused at compile.)
+``````
+Error: compileSDK version not defined
+Solution: Open node_modules/@better-network/react-native-nfc-passport-reader/android/build.gradle
+make sure that have the following:
+compileSdkVersion getExtOrIntegerDefault('compileSdkVersion')
+``````
+## ✔️3.'mavin' error
+``````
+Error: could not found  plugin with id 'mavin'
+Solution: rewrite 'mavin' into 'mavin-publish'
+``````
+## ✔️4. no command error
+``````
+Error: bundle no command
+Solution: 
+#cmd
+npm uninstall -g react-native-cli
+npm uninstall -g react-native
+npm install -g react-native-cli
+npm install -g react-native
+``````
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+>**NOTE:**
+Three available native modules for NFC.<br>
+1.react-native-nfc-card-reader<br>
+2.react-native-nfc-manager<br>
+3.@better-network/react-native-nfc-passport-reader<br>
+I personally recommend , you are using @better-network/react-native-nfc-passport-reader.
