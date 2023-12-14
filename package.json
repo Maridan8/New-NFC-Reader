@@ -13,6 +13,8 @@
     "@better-network/react-native-nfc-passport-reader": "^0.2.2",
     "react": "18.2.0",
     "react-native": "0.73.0",
+    "react-native-nfc-card-reader": "^1.0.6",
+    "react-native-nfc-manager": "^3.14.11",
     "react-native-toast-message": "^2.1.8"
   },
   "devDependencies": {
